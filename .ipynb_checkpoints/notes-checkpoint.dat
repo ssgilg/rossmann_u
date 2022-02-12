@@ -1,0 +1,53 @@
+https://medium.com/@d.moni91/rossmann-store-sales-sales-forecasting-using-time-series-regression-in-python-1e7ad6fb0aec
+
+https://github.com/dmoni91/Sales-Forecasting
+
+https://www.tableau.com/learn/articles/retail-industry-metrics-kpis
+
+https://towardsdatascience.com/a-quick-start-of-time-series-forecasting-with-a-practical-example-using-fb-prophet-31c4447a2274
+
+https://tessellationtech.io/facebook-prophet-tutorial-time-series-forecasting/
+
+https://nbviewer.org/github/nicolasfauchereau/Auckland_Cycling/blob/master/notebooks/Auckland_cycling_and_weather.ipynb
+
+
+BENCHMARK CASE: all stores, weekly sales (sum)
+
+a,b,c = make_base_benchmark_prediction(train, "Sales", events = False)
+
+a_temp = a.drop(a.index[a.index >= len(b)])
+rmse( b['y'].array, a_temp['yhat'].array), rmsep( b['y'].array, a_temp['yhat'].array)
+
+(7325083.305481133, 0.16837320520458185)
+
+
+
+a,b,c = make_base_benchmark_prediction(train, "Sales", events = True)
+
+a_temp = a.drop(a.index[a.index >= len(b)])
+rmse( b['y'].array, a_temp['yhat'].array), rmsep( b['y'].array, a_temp['yhat'].array)
+
+(7299799.472078774, 0.1677920350127523)
+
+
+
+all stores of type a (weekly sales)
+a,b,c = make_base_all_a_prediction(store_a_w, "Sales", events = False)
+
+(4284.923388589772, 0.11737315163216866)
+
+
+type a stores that open on sundays
+
+a_, b_ , c_ =  make_base_benchmark_prediction_stores_a_open(train_store_a_openSun_, 'Sales', events = False)
+
+63767.31091458604, 0.11581557806328492
+
+a_hol,b_hol,c_hol =  make_base_benchmark_prediction_stores_a_open(train_store_a_openSun_, 'Sales', events = True)
+
+(61958.45953880806, 0.11253030282254436)
+
+
+global model with regresor , no events
+ar, br, cr,  = make_base_benchmark_prediction_weather_regressor(weather_r, 'Sales', events = False, w_feature = 'Mean_TemperatureC')
+(7826593.174940776, 0.17990083166849757)
